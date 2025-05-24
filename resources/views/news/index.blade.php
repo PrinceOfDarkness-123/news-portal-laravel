@@ -10,7 +10,7 @@
                  @if ($firstNews->image)
                    <img src="{{asset('storage/' . $firstNews->image)}}" alt="Big Image">
                  @else
-                   <img src="https://placehold.co/800x600" alt="Big Image">
+                   <img src="https://placehold.co/800x800" alt="Big Image">
                  @endif
                  <div class="text-overlay">
                    <h6>{{$firstNews->category->name}}</h6>
@@ -112,10 +112,20 @@
         <div class="container mt-5">
           <div class="d-flex align-items-center border-bottom mb-3 pb-2">
              <h5 class="me-4 text-uppercase fw-bold text-warning mb-0">Don't Miss</h5>
-             <nav class="nav" style="text-align:center;">
-                @foreach (\App\Models\Category::all() as $categoriesList)
-                  <a class="nav-link px-2 active" href="#">{{$categoriesList->name}}</a>
+             <nav class="nav ms-auto">
+                @foreach ($firstSevenCategories as $categoryItem)
+                  <a class="nav-link px-2 active" href="#">{{$categoryItem->name}}</a>
                 @endforeach
+                  @if ($moreCategories->isNotEmpty())
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                More
+                </a>
+                 <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                   @foreach ($moreCategories as $categoryItem)
+                     <li><a class="nav-link px-2 active" href="#">{{$categoryItem->name}}</a></li>
+                   @endforeach
+                 </ul>
+                  @endif
              </nav>
           </div>
           <div class="row gx-4">

@@ -13,7 +13,9 @@ class NewsController extends Controller
         $nextTwo = News::with('category', 'author')->skip(1)->take(2)->get();
         $twoMore = News::with('category', 'author')->skip(3)->take(2)->get();
         $restOfTheRecords = News::with('category', 'author')->skip(5)->take(PHP_INT_MAX)->get();
-        return view('news.index', compact('firstNews', 'nextTwo', 'twoMore', 'restOfTheRecords'));
+        $firstSevenCategories = Category::take(7)->get();
+        $moreCategories = Category::skip(7)->take(PHP_INT_MAX)->get();
+        return view('news.index', compact('firstNews', 'nextTwo', 'twoMore', 'restOfTheRecords', 'firstSevenCategories', 'moreCategories'));
     }
     public function show($id) {
         $news = News::with('category', 'author')->find($id);

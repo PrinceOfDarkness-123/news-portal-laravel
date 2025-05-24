@@ -15,9 +15,10 @@ class CategoriesSeeder extends Seeder
      */
     public function run()
     {
-        $categories = ['Technology', 'Politics', 'Sports', 'Entertainment', 'Health'];
+        $categories = ['Technology', 'Politics', 'Sports', 'Entertainment', 'Health', 'Fashion', 'Current Affairs',
+    'Business', 'World News / International', 'Education', 'Environment', 'Crime & Law', 'Finance & Economy', 'Agriculture', 'Social Issues'];
         foreach ($categories as $cat) {
-           Category::create(['name' => $cat]);
+           Category::firstOrCreate(['name' => $cat]);
         }
     }
 }

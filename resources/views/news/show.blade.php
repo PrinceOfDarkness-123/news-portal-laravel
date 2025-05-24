@@ -5,7 +5,7 @@
         @if($news->image)
             <img src="{{ asset('storage/' . $news->image) }}" class="card-img-top" alt="{{ $news->title }}">
         @else
-            <img src="https://placehold.co/800x400" class="card-img-top" alt="No image">
+            <img src="https://placehold.co/700x300" class="card-img-top" alt="No image">
         @endif
 
         <div class="card-body">
