@@ -20,3 +20,5 @@ Route::controller(NewsController::class)->group(function() {
 });
 
 Route::get('/category/{category}', [CategoryController::class, 'show'])->name('category.index');
+
+Route::get('/news-by-category/{id}', [NewsController::class, 'loadByCategory']);

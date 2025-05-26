@@ -9,19 +9,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
-    <script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const carousel = document.querySelector('#newsCarousel');
-        const indicators = document.querySelectorAll('.indicator-dot');
-
-        carousel.addEventListener('slide.bs.carousel', function (e) {
-            indicators.forEach(dot => dot.classList.remove('active'));
-            if (indicators[e.to]) {
-                indicators[e.to].classList.add('active');
-            }
-        });
-    });
-    </script>
+    <script type="text/javascript" src="{{ asset('js/custom.js') }}"></script>
 </head>
 <body>
     <!-- Navbar -->
@@ -141,7 +129,7 @@
                           <input class="form-check-input" type="radio" name="pollOption" id="apple" value="Apple">
                           <label class="form-check-label" for="apple">Other</label>
                         </div>
-                        <a href="#" class="btn btn-sm btn-outline-primary mt-auto">Read more</a>
+                        <a href="#" class="btn btn-sm btn-outline-primary mt-auto">Submit</a>
                    </form>
                </div>
             </aside>

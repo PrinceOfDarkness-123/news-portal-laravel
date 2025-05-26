@@ -135,6 +135,9 @@ button.indicator-dot:focus {
   flex: 1;
 }
 
+.small-news-container.no-gap .small-news-item + .small-news-item {
+    margin-top: 0 !important;
+}
 .small-news img {
   width: 100px;
   height: 80px;

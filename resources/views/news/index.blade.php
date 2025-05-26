@@ -114,7 +114,7 @@
              <h5 class="me-4 text-uppercase fw-bold text-warning mb-0">Don't Miss</h5>
              <nav class="nav ms-auto">
                 @foreach ($firstSevenCategories as $categoryItem)
-                  <a class="nav-link px-2 active" href="#">{{$categoryItem->name}}</a>
+                  <a class="nav-link px-2 category-link {{ $activeMenu === 'category_'.$categoryItem->id ? 'fw-bold border-bottom border-primary' : '' }}" href="{{ route('news.index') }}" data-category-id="{{ $categoryItem->id }}">{{$categoryItem->name}}</a>
                 @endforeach
                   @if ($moreCategories->isNotEmpty())
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -122,58 +122,56 @@
                 </a>
                  <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                    @foreach ($moreCategories as $categoryItem)
-                     <li><a class="nav-link px-2 active" href="#">{{$categoryItem->name}}</a></li>
+                     <li><a class="nav-link px-2 active category-link" data-category-id="{{ $categoryItem->id }}" href="#">{{$categoryItem->name}}</a></li>
                    @endforeach
                  </ul>
                   @endif
              </nav>
           </div>
-          <div class="row gx-4">
+          <div id="news-section">
+             @if (isset($featuredNews))
+                 <div class="row gx-4">
                 <!-- Left Large Image -->
                <div class="col-md-6">
                  <div class="card h-100 featured-news">
-                   <img src="https://placehold.co/600x400" class="card-img-top" alt="Featured">
+                  @if($featuredNews->image)
+                    <img src="{{ asset('storage/' . $featuredNews->image) }}" class="card-img-top" alt="Featured">
+                  @else
+                    <img src="https://placehold.co/600x400" class="card-img-top" alt="Featured">
+                  @endif
                    <div class="card-body">
-                     <span class="badge bg-dark mb-2">New Look</span>
-                     <h5 class="card-title">Top Fashion Trends to Look for in Every Important Collection</h5>
-                     <p class="card-text text-muted">By Armin Vans | August 7, 2019</p>
-                     <p class="card-text">We woke reasonably late following the feast and free flowing wine the night before...</p>
+                     <h5 class="card-title">{{ $featuredNews->title }}</h5>
+                     <p class="card-text text-muted">By {{($featuredNews->author->name) ?? 'unknown'}} | {{$featuredNews->created_at->format('F j, Y')}}</p>
+                     <p class="card-text">{{ Str::limit($featuredNews->content, 150) }}</p>
                    </div>
                  </div>
                </div>
 
           <!-- Right 4 Small News -->
                <div class="col-md-6 d-flex flex-column justify-content-between">
-                 <div class="d-flex mb-3 small-news">
-                   <img src="https://placehold.co/100x80" class="me-3 img-thumbnail" alt="Thumb 1" style="width:100px;">
-                   <div>
-                     <h6 class="mb-1">Spring Fashion Show at the University of Michigan Has</h6>
-                     <p class="text-muted mb-0">August 7, 2019</p>
-                   </div>
+                 <div class="small-news-container">
+                    @foreach ($smallNews as $news)
+                    <div class="small-news-item">
+                       <div class="d-flex {{ count($smallNews) > 2 ? 'mb-3' : '' }} small-news">
+                         @if ($news->image)
+                           <img src="{{ asset('storage/' . $news->image) }}" class="me-3 img-thumbnail" alt="Thumb 1" style="width:100px;">
+                         @else
+                           <img src="https://placehold.co/100x80" class="me-3 img-thumbnail" alt="Thumb 1" style="width:100px;">
+                         @endif
+                         <div>
+                           <h6 class="mb-1">{{ $news->title }}</h6>
+                           <p class="text-muted mb-0">{{ $news->created_at->format('F j, Y') }}</p>
+                         </div>
                  </div>
-                 <div class="d-flex mb-3 small-news">
-                   <img src="https://placehold.co/100x80" class="me-3 img-thumbnail" alt="Thumb 2" style="width:100px;">
-                   <div>
-                     <h6 class="mb-1">Study 2020: Fake Engagement is Only Half the Problem</h6>
-                     <p class="text-muted mb-0">August 7, 2019</p>
-                   </div>
-                 </div>
-                 <div class="d-flex mb-3 small-news">
-                   <img src="https://placehold.co/100x80" class="me-3 img-thumbnail" alt="Thumb 3" style="width:100px;">
-                   <div>
-                     <h6 class="mb-1">Laptop with 128-bit Processor, 32GB of RAM and 24MP Front Camera</h6>
-                     <p class="text-muted mb-0">August 7, 2019</p>
-                   </div>
-                 </div>
-                 <div class="d-flex small-news">
-                   <img src="https://placehold.co/100x80" class="me-3 img-thumbnail" alt="Thumb 4" style="width:100px;">
-                   <div>
-                     <h6 class="mb-1">Flying Over the Grand Canyon with a Helicopter</h6>
-                     <p class="text-muted mb-0">August 7, 2019</p>
-                   </div>
+                    </div>
+                 @endforeach
                  </div>
                </div>
             </div>
+             @else
+               <h5 style="text-align: center">No content related to this category</h5>
+             @endif
+          </div>
         </div>
     </div>
     {{-- $news->links() --}}
