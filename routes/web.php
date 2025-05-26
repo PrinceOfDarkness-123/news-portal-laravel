@@ -17,8 +17,7 @@ use Illuminate\Support\Facades\Route;
 Route::controller(NewsController::class)->group(function() {
     Route::get('/', 'index')->name('news.index');
     Route::get('/news/{news}', 'show')->name('news.show');
+    Route::get('/news-by-category/{id}', 'index');
 });
 
 Route::get('/category/{category}', [CategoryController::class, 'show'])->name('category.index');
-
-Route::get('/news-by-category/{id}', [NewsController::class, 'loadByCategory']);

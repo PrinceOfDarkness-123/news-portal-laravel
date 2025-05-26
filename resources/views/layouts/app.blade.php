@@ -48,26 +48,30 @@
     <div class="bg-light border-top border-bottom py-2 mt-custom">
         <div class="container">
             <ul class="nav justify-content-center">
+                
                 <li class="nav-item">
-                    <a class="nav-link {{ request()->routeIs('news.index') ? 'active fw-bold text-primary' : 'text-dark' }}" href="{{ route('news.index') }}">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-dark" href="#">Latest</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-dark" href="#">Popular</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-dark" href="#">Politics</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-dark" href="#">Sports</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-dark" href="#">Entertainment</a>
+                    <a class="nav-link {{ request()->routeIs('news.index') ? 'fw-bold border-bottom border-primary' : 'text-dark' }}" href="{{ route('news.index') }}">Home</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link text-dark" href="#">Contact</a>
+                </li>
+                @foreach ($firstFourCategories as $categories)
+                    <li class="nav-item">
+                       <a class="nav-link text-dark {{ isset($activeMenuForCategory) && $activeMenuForCategory === 'category_'.$categories->id ? 'fw-bold border-bottom border-primary' : '' }}" href="{{ route('category.index', $categories->id) }}">{{ $categories->name }}</a>
+                    </li>
+                @endforeach
+                <li class="nav-item dropdown">
+                   <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                     More Categories
+                   </a>
+                   <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                     @foreach ($remainingCategories as $categories)
+                         <li><a class="dropdown-item {{ isset($activeMenuForCategory) && $activeMenuForCategory === 'category_'.$categories->id ? 'fw-bold border-bottom border-primary' : '' }}" href="{{ route('category.index', $categories->id) }}">{{ $categories->name }}</a></li>
+                     @endforeach
+                   </ul>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-dark" href="#">About</a>
                 </li>
             </ul>
         </div>
