@@ -4,7 +4,7 @@
     <h5 class="mb-4">🆕 Category: {{$category_name}}</h5>
 
     <div class="row">
-        @foreach($newsByCategory as $item)
+            @foreach($newsByCategory as $item)
             <div class="col-md-6 mb-4" style="width: 350px; height: 440px;">
                 <div class="card h-100">
                     @if($item->image)
@@ -25,6 +25,5 @@
             </div>
         @endforeach
     </div>
- 
     {{ $newsByCategory->links() }}
 @endsection
