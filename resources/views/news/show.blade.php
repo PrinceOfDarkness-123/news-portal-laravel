@@ -3,9 +3,9 @@
 @section('content')
     <div class="card mb-4">
         @if($news->image)
-            <img src="{{ asset('storage/' . $news->image) }}" class="card-img-top" alt="{{ $news->title }}">
+            <img src="{{ asset('storage/' . $news->image) }}" style="width: 100%; height: 300px; object-fit: cover;" class="card-img-top" alt="{{ $news->title }}">
         @else
-            <img src="https://placehold.co/700x300" class="card-img-top" alt="No image">
+            <img src="https://placehold.co/600x1000" class="card-img-top" style="width: 100%; height: 300px; object-fit: cover;" alt="No image">
         @endif
 
         <div class="card-body">
@@ -18,7 +18,7 @@
 
             <p class="card-text">{!! nl2br(e($news->content)) !!}</p>
 
-            <a href="{{ url()->previous() }}" class="btn btn-secondary mt-3">← Back to News</a>
+            <a href="{{ url()->previous() }}" class="btn btn-outline-primary">← Back to News</a>
         </div>
     </div>
 @endsection 

@@ -5,12 +5,12 @@
 
     <div class="row">
             @foreach($newsByCategory as $item)
-            <div class="col-md-6 mb-4" style="width: 350px; height: 440px;">
+            <div class="col-md-6 mb-4">
                 <div class="card h-100">
                     @if($item->image)
                         <img src="{{ asset('storage/' . $item->image) }}" class="card-img-top" alt="{{ $item->title }}">
                     @else
-                        <img src="https://placehold.co/600x300" class="card-img-top" alt="No image">
+                        <img src="https://placehold.co/600x300" style="width: 100%; height: 300px; object-fit: cover;" class="card-img-top" alt="No image">
                     @endif
 
                     <div class="card-body d-flex flex-column">

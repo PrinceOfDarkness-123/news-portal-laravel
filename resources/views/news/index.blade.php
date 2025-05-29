@@ -14,7 +14,7 @@
                  @endif
                  <div class="text-overlay">
                    <h6>{{$firstNews->category->name}}</h6>
-                   <h4>{{$firstNews->title}}</h4>
+                   <a class="custom-link" href="{{ route('news.show', $firstNews->id) }}"><h4>{{$firstNews->title}}</h4></a>
                    <p>{{ \Illuminate\Support\Str::limit($firstNews->content, 60) }}</p>
                  </div>
                </div>
@@ -30,7 +30,7 @@
                        @endif
                         <div class="text-overlay">
                           <h6 style="font-size: 12px">{{$columnOneRecords->category->name}}</h6>
-                          <b><p>{{$columnOneRecords->title}}</p></b>
+                          <a class="custom-link" href="{{ route('news.show', $columnOneRecords->id) }}"><b><p>{{$columnOneRecords->title}}</p></b></a>
                         </div>
                      </div>
                   </div>
@@ -47,7 +47,7 @@
                     @endif
                      <div class="text-overlay">
                        <h6 style="font-size: 12px">{{$columnTwoRecords->category->name}}</h6>
-                       <b><p>{{$columnTwoRecords->title}}</p></b>
+                       <a class="custom-link" href="{{ route('news.show', $columnTwoRecords->id) }}"><b><p>{{$columnTwoRecords->title}}</p></b></a>
                      </div>
                   </div>
                 </div>
@@ -62,13 +62,13 @@
                         @foreach ($chunk as $item)
                             <div class="col-md-3">
                                <div class="card h-100">
-                                  @if($item->image)
+                                    @if($item->image)
                                         <img src="{{ asset('storage/' . $item->image) }}" class="card-img-top" alt="{{ $item->title }}">
                                     @else
                                         <img src="https://placehold.co/600x300" class="card-img-top" alt="No image">
                                     @endif
                                     <div class="card-body d-flex flex-column">
-                                       <h6 class="card-title">{{ $item->title }}</h6>
+                                       <a class="custom-link" href="{{ route('news.show', $item) }}"><h6 class="card-title">{{ $item->title }}</h6></a>
                                        <p class="card-text text-muted">
                                            {{ $item->created_at->format('M d, Y') }} | By <em>{{ $item->author->name }}</em>
                                        </p>
@@ -114,15 +114,15 @@
              <h5 class="me-4 text-uppercase fw-bold text-warning mb-0">Don't Miss</h5>
              <nav class="nav ms-auto">
                 @foreach ($firstSevenCategories as $categoryItem)
-                  <a class="nav-link px-2 category-link {{ $activeMenu === 'category_'.$categoryItem->id ? 'fw-bold border-bottom border-primary' : '' }}" href="{{ route('news.index') }}" data-category-id="{{ $categoryItem->id }}">{{$categoryItem->name}}</a>
+                  <a class="nav-link nav-hover px-2 me-2 category-link {{ $activeMenu === 'category_'.$categoryItem->id ? 'fw-bold border-bottom border-primary' : '' }}" href="{{ route('news.index') }}" data-category-id="{{ $categoryItem->id }}">{{$categoryItem->name}}</a>
                 @endforeach
                   @if ($moreCategories->isNotEmpty())
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <a class="nav-link nav-hover dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 More
                 </a>
                  <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                    @foreach ($moreCategories as $categoryItem)
-                     <li><a class="nav-link px-2 active category-link" data-category-id="{{ $categoryItem->id }}" href="#">{{$categoryItem->name}}</a></li>
+                     <li><a class="nav-link nav-hover px-2 active category-link" data-category-id="{{ $categoryItem->id }}" href="#">{{$categoryItem->name}}</a></li>
                    @endforeach
                  </ul>
                   @endif
@@ -140,9 +140,12 @@
                     <img src="https://placehold.co/600x400" class="card-img-top" alt="Featured">
                   @endif
                    <div class="card-body">
-                     <h5 class="card-title">{{ $featuredNews->title }}</h5>
+                     <a class="custom-link" href="{{ route('news.show', $featuredNews) }}"><h5 class="card-title">{{ $featuredNews->title }}</h5></a>
+
                      <p class="card-text text-muted">By {{($featuredNews->author->name) ?? 'unknown'}} | {{$featuredNews->created_at->format('F j, Y')}}</p>
+                     
                      <p class="card-text">{{ Str::limit($featuredNews->content, 150) }}</p>
+                     <a href="{{ route('news.show', $featuredNews) }}" class="btn btn-sm btn-outline-primary mt-auto">Read more</a>
                    </div>
                  </div>
                </div>
@@ -159,7 +162,7 @@
                            <img src="https://placehold.co/100x80" class="me-3 img-thumbnail" alt="Thumb 1" style="width:100px;">
                          @endif
                          <div>
-                           <h6 class="mb-1">{{ $news->title }}</h6>
+                           <a class="custom-link" href="{{ route('news.show', $news) }}"><h6 class="mb-1">{{ $news->title }}</h6></a>
                            <p class="text-muted mb-0">{{ $news->created_at->format('F j, Y') }}</p>
                          </div>
                  </div>

@@ -10,6 +10,8 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
         <link rel="stylesheet" href="https://unpkg.com/bs-brain@2.0.4/components/error-404s/error-404-1/assets/css/error-404-1.css">
+        <!-- Google Fonts -->
+        <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
     <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
     <script type="text/javascript" src="{{ asset('js/custom.js') }}"></script>
 </head>
@@ -49,31 +51,30 @@
     <!-- Horizontal Navigation Bar -->
     <div class="bg-light border-top border-bottom py-2 mt-custom">
         <div class="container">
-            <ul class="nav justify-content-center">
-                
+            <ul class="nav justify-content-evenly">
                 <li class="nav-item">
-                    <a class="nav-link {{ request()->routeIs('news.index') ? 'fw-bold border-bottom border-primary' : 'text-dark' }}" href="{{ route('news.index') }}">Home</a>
+                    <a class="nav-link nav-hover {{ request()->routeIs('news.index') ? 'fw-bold border-bottom border-primary' : 'text-dark' }}" href="{{ route('news.index') }}">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-dark" href="#">Contact</a>
+                    <a class="nav-link nav-hover text-dark" href="#">Contact</a>
                 </li>
                 @foreach ($firstFourCategories as $categories)
                     <li class="nav-item">
-                       <a class="nav-link text-dark {{ isset($activeMenuForCategory) && $activeMenuForCategory === 'category_'.$categories->id ? 'fw-bold border-bottom border-primary' : '' }}" href="{{ route('category.index', $categories->id) }}">{{ $categories->name }}</a>
+                       <a class="nav-link nav-hover {{ isset($activeMenuForCategory) && $activeMenuForCategory === 'category_'.$categories->id ? 'fw-bold border-bottom border-primary' : 'text-dark' }}" href="{{ route('category.index', $categories->id) }}">{{ $categories->name }}</a>
                     </li>
                 @endforeach
                 <li class="nav-item dropdown">
-                   <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                   <a class="nav-link nav-hover  dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                      More Categories
                    </a>
                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                      @foreach ($remainingCategories as $categories)
-                         <li><a class="dropdown-item {{ isset($activeMenuForCategory) && $activeMenuForCategory === 'category_'.$categories->id ? 'fw-bold border-bottom border-primary' : '' }}" href="{{ route('category.index', $categories->id) }}">{{ $categories->name }}</a></li>
+                         <li><a class="dropdown-item nav-link nav-hover {{ isset($activeMenuForCategory) && $activeMenuForCategory === 'category_'.$categories->id ? 'fw-bold border-bottom border-primary' : 'text-dark' }}" href="{{ route('category.index', $categories->id) }}">{{ $categories->name }}</a></li>
                      @endforeach
                    </ul>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-dark" href="#">About</a>
+                    <a class="nav-link nav-hover text-dark" href="#">About</a>
                 </li>
             </ul>
         </div>
