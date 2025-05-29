@@ -159,14 +159,13 @@ button.indicator-dot:focus {
   margin-top: 20px; /* add vertical space before button */
   align-self: center; /* center button inside flex container */
 }
-
-
-
-
-
-
-
-
-
-
-
+.custom-link {
+  color: inherit; /* or whatever default color */
+  text-decoration: none;
+}
+.custom-link:hover{
+  text-decoration-line: underline;
+}
+.nav-hover:hover {
+   border-bottom: 1px solid #0a58cd;
+}
