@@ -39,6 +39,8 @@ class NewsController extends Controller
         $news = News::with('category', 'author')->find($id);
         $categoryid = $news->category_id;
         $activeMenu = "category_$categoryid";
-        return view('news.show', compact('news', 'activeMenu'));
+        $firstFourCategories = Category::take(4)->get();
+        $remainingCategories = Category::skip(4)->take(PHP_INT_MAX)->get();
+        return view('news.show', compact('news', 'activeMenu', 'firstFourCategories', 'remainingCategories'));
     }
 }
