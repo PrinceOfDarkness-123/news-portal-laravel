@@ -27,3 +27,7 @@ Route::get('/category/{category}', [CategoryController::class, 'show'])->name('c
 Route::get('login', function() {
     return view('auth.login');
 })->name('auth.login');
+//Route for Sign Up Form
+Route::get('signup', function() {
+    return view('auth.signup');
+})->name('auth.signup');
