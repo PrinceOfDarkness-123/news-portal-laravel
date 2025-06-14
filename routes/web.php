@@ -20,5 +20,10 @@ Route::controller(NewsController::class)->group(function() {
     Route::get('/news/{news}', 'show')->name('news.show');
     Route::get('/news-by-category/{id}', 'index');
 });
-
+// Route for rendering news by category
 Route::get('/category/{category}', [CategoryController::class, 'show'])->name('category.index');
+
+//Route for Login Form
+Route::get('login', function() {
+    return view('auth.login');
+})->name('auth.login');
