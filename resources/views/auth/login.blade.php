@@ -59,7 +59,7 @@
                             </div>
                             <p class="text-center mt-4 mb-0">
                               Don't have an account?
-                              <a href="#" class="register-link">
+                              <a href="{{ route('auth.signup') }}" class="register-link">
                                 Register here
                               </a>
                             </p>
