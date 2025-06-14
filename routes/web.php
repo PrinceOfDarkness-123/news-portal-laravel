@@ -23,11 +23,12 @@ Route::controller(NewsController::class)->group(function() {
 // Route for rendering news by category
 Route::get('/category/{category}', [CategoryController::class, 'show'])->name('category.index');
 
-//Route for Login Form
+//Dashboard Route
+Route::get('/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
+
 Route::get('login', function() {
     return view('auth.login');
 })->name('auth.login');
-//Route for Sign Up Form
 Route::get('signup', function() {
     return view('auth.signup');
 })->name('auth.signup');
