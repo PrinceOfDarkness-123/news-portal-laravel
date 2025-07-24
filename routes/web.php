@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\EditorLogin;
+use App\Http\Controllers\EditorRegistration;
 use App\Http\Controllers\NewsController;
 use Illuminate\Support\Facades\Route;
 
@@ -26,9 +28,15 @@ Route::get('/category/{category}', [CategoryController::class, 'show'])->name('c
 //Dashboard Route
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
 
-Route::get('login', function() {
-    return view('auth.login');
-})->name('auth.login');
-Route::get('signup', function() {
-    return view('auth.signup');
-})->name('auth.signup');
+//For editor registration
+Route::controller(EditorRegistration::class)->prefix('editor')->group(function() {
+    Route::get('/register-form','registrationForm')->name('auth.signup');
+    Route::post('/create','registerAccount')->name('auth.create');
+});
+
+//For editor login
+Route::controller(EditorLogin::class)->prefix('editor')->group(function() {
+    Route::get('/login-form','loginForm')->name('auth.login');
+    Route::post('/login','login');
+});
+ 

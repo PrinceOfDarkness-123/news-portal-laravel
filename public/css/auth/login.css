@@ -127,5 +127,72 @@ html, body {
   height: 100%;
   margin: 0;
   padding: 0;
-  overflow: hidden; /* Prevent scrollbars */
+  overflow-y: auto; /* ✅ Allows vertical scrolling */
+  overflow-x: hidden; /* optional: keeps horizontal overflow hidden */
+}
+.alert-content-wide {
+  background-color: #dc3545;
+  color: white;
+  width: 100%;
+  padding: 12px 20px;
+  border-radius: 0; /* Remove curve */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+  box-sizing: border-box;
+}
+
+.alert-content-wide {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.alert-icon {
+  font-size: 20px;
+  margin-right: 10px;
+}
+
+.alert-text {
+  font-size: 18px;
+  flex-grow: 1;
+  text-align: left;
+}
+
+.alert-close {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 25px;
+  cursor: pointer;
+  margin-left: 10px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 32px;
+  height: 32px;
+  line-height: 1;
+  padding: 0;
+  border-radius: 50%;
+  transition: background-color 0.2s ease;
+}
+
+.alert-close:hover {
+  background-color: rgba(255, 255, 255, 0.2); /* subtle white circle */
+}
+input#passwordInput.is-invalid {
+    background-position: right 2.2rem center; /* shift ⚠️ icon slightly left */
+    background-size: 1rem 1rem;
+}
+/* Only shift for confirm password input */
+input#passwordInputForConfirm.is-invalid {
+    background-position: right 2.2rem center;
+    background-size: 1rem 1rem;
+}
+.form-check-input {
+    width: 18px;
+    height: 18px;
+    border: 1px solid #2a56c6 !important; /* Thicker and darker border */
+    accent-color: #0d6efd; /* Optional: set checkmark color (Bootstrap primary blue) */
 }
