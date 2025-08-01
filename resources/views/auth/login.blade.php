@@ -23,9 +23,14 @@
                                 <i class="bi bi-eye-slash-fill" id="eyeIcon"></i>
                               </span>
                             </div>
-                            <div style="text-align: left" class="mb-3 form-check">
-                                <input type="checkbox" name="remember" class="form-check-input" id="remember">
-                                <label class="form-check-label" for="remember">Remember Me</label>
+                            <div class="mb-3 d-flex justify-content-between align-items-center">
+                                <div class="form-check">
+                                    <input type="checkbox" name="remember" class="form-check-input" id="remember">
+                                    <label class="form-check-label" for="remember">Remember Me</label>
+                                </div>
+                                <div>
+                                    <a href="" class="text-decoration-none">Forgot Password?</a>
+                                </div>
                             </div>
                             <button type="submit" class="btn btn-primary rounded-0 w-100">Login</button>
                             <div class="w-100 d-flex align-items-center my-3">
