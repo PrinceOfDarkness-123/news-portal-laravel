@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Auth\VerifyEmailController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\EditorLogin;
 use App\Http\Controllers\EditorRegistration;
@@ -31,7 +32,7 @@ Route::get('/dashboard', [DashboardController::class, 'index'])->name('admin.das
 //For editor registration
 Route::controller(EditorRegistration::class)->prefix('editor')->group(function() {
     Route::get('/register-form','registrationForm')->name('auth.signup');
-    Route::post('/create','registerAccount')->name('auth.create');
+    Route::post('/create','submitData')->name('auth.create');
 });
 
 //For editor login
@@ -39,4 +40,5 @@ Route::controller(EditorLogin::class)->prefix('editor')->group(function() {
     Route::get('/login-form','loginForm')->name('auth.login');
     Route::post('/login','login');
 });
- 
+
+Route::get('/email/verify/{id}/{hash}', VerifyEmailController::class)->middleware(['signed'])->name('verification.verify');

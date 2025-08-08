@@ -16,10 +16,55 @@
                     <div style="text-align:center">
                         @if ($errors->any())
                             <div class="info-alert" id="infoAlert">
-                                <div class="alert-content-wide">
-                                  <span class="alert-icon"><i class="bi bi-exclamation-circle"></i></span>
-                                  <span class="alert-text">&nbsp;&nbsp;&nbsp;Please correct the highlighted errors.</span>
-                                  <button class="alert-close" onclick="dismissAlert()">&times;</button>
+                                <div class="errorAlert">
+                                    <div class="alert-content">
+                                        <span class="alert-icon">
+                                            <i class="bi bi-x-circle" style="font-size: 1.3rem;"></i>
+                                        </span>
+                                        <div class="alert-text">
+                                            <strong>Can't Register your Account</strong><br>
+                                            <span class="alert-description">
+                                                Please review the form and correct the highlighted errors below.
+                                            </span>
+                                        </div>
+                                        <button class="alert-close" onclick="dismissAlert()">&times;</button>
+                                    </div>
+                                </div>
+                            </div>
+                        @endif
+                        @if (session('success'))
+                            <div class="info-alert" id="infoAlert">
+                                <div class="successAlert">
+                                    <div class="alert-content">
+                                        <span class="alert-icon">
+                                            <i class="bi bi-envelope-check"></i>
+                                        </span>
+                                        <div class="alert-text">
+                                            <strong>{!!session('success')!!}</strong><br>
+                                            <span class="alert-description">
+                                                Please check your inbox and click on the link to verify your account
+                                            </span>
+                                        </div>
+                                        <button class="alert-close" onclick="dismissAlert()">&times;</button>
+                                    </div>
+                                </div>
+                            </div>
+                        @endif
+                        @if (session('error'))
+                            <div class="info-alert" id="infoAlert">
+                                <div class="errorAlert">
+                                    <div class="alert-content">
+                                        <span class="alert-icon">
+                                            <i class="bi bi-x-circle"></i>
+                                        </span>
+                                        <div class="alert-text">
+                                            <strong>{!!session('error')!!}</strong><br>
+                                            <span class="alert-description">
+                                                An unexpected error occurred. Try again later or refresh the page.
+                                            </span>
+                                        </div>
+                                        <button class="alert-close" onclick="dismissAlert()">&times;</button>
+                                    </div>
                                 </div>
                             </div>
                         @endif
@@ -29,7 +74,7 @@
                             @csrf
                             <div class="mb-3">
                                 <h6 style="text-align: left"><label for="username" class="form-label">User Name</label></h6>
-                                <input type="text" placeholder="Enter your User Name" name="username" class="form-control rounded-0 @error('username') is-invalid @elseif(old('username')) is-valid @enderror" value="{{old('username')}}">
+                                <input type="text" placeholder="Enter your User Name" name="username" class="form-control rounded-0 @error('username') is-invalid @elseif(old('username')) is-valid @enderror" value="{{old('username')}}" autocomplete="off">
                                 @if ($errors->has('username'))
                                   @error('username')
                                     <div style="text-align: right" id="validationServerUsernameFeedback" class="invalid-feedback">
@@ -44,7 +89,7 @@
                             </div>
                             <div class="mb-3">
                                 <h6 style="text-align: left"><label for="email" class="form-label">Email Address</label></h6>
-                                <input type="text" placeholder="Enter your Email Address" name="email" class="form-control rounded-0 @error('email') is-invalid @elseif(old('email')) is-valid @enderror" value="{{old('email')}}">
+                                <input type="text" placeholder="Enter your Email Address" name="email" class="form-control rounded-0 @error('email') is-invalid @elseif(old('email')) is-valid @enderror" value="{{old('email')}}" autocomplete="off">
                                 @if ($errors->has('email'))
                                   @error('email')
                                     <div style="text-align: right" id="validationServerUsernameFeedback" class="invalid-feedback">
@@ -65,7 +110,7 @@
                                         placeholder="Enter your Password"
                                         id="passwordInput"
                                         class="form-control rounded-0 @error('password') is-invalid @elseif(old('password')) is-valid @enderror"
-                                        style="padding-right: 4rem;">
+                                        style="padding-right: 4rem;" autocomplete="off">
                                     <span class="position-absolute top-50 translate-middle-y" style="right: 0.75rem; cursor: pointer;" id="togglePassword">
                                         <i class="bi bi-eye-slash-fill" id="eyeIcon"></i>
                                     </span>
@@ -85,7 +130,7 @@
                                         id="passwordInputForConfirm"
                                         class="form-control rounded-0 
                                         @error('confirm_password') is-invalid @enderror"
-                                        style="padding-right: 4rem;"> <!-- Enough space for both icons -->
+                                        style="padding-right: 4rem;" autocomplete="off">
                                     <!-- Eye Icon (👁) -->
                                     <span class="position-absolute top-50 translate-middle-y" style="right: 0.75rem; cursor: pointer;" id="togglePasswordForConfirm">
                                         <i class="bi bi-eye-slash-fill" id="eyeIconForConfirm"></i>

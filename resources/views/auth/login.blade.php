@@ -8,6 +8,24 @@
                 {{-- Left Side: Login Form --}}
                 <div class="col-md-6 container-size d-flex flex-column justify-content-center p-4">
                     <div style="text-align:center">
+                      @if (session('success'))
+                            <div class="info-alert" id="infoAlert">
+                                <div class="successAlert">
+                                    <div class="alert-content">
+                                        <span class="alert-icon">
+                                            <i class="bi bi-check-circle"></i>
+                                        </span>
+                                        <div class="alert-text">
+                                            <strong>{!!session('success')!!}</strong><br>
+                                            <span class="alert-description">
+                                                Now you can log in and draft, edit, and publish articles right from your dashboard.
+                                            </span>
+                                        </div>
+                                        <button class="alert-close" onclick="dismissAlert()">&times;</button>
+                                    </div>
+                                </div>
+                            </div>
+                        @endif
                         <h4 style="text-align: left" class="mb-3">Sign In</h4>
                         <p style="text-align: left" class="fw-light">Keep the news flowing—log in to manage the portal.</p>
                         <form method="POST" action="#">
