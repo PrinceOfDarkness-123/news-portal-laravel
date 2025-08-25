@@ -142,7 +142,7 @@ html, body {
   margin-top: -18px;
 }
 .successAlert {
-  background-color: #0b5ed7; /* same as your original */
+  background-color: #0a58cd; /* same as your original */
   color: white;
   width: 100%;
   padding: 16px 20px;
@@ -151,6 +151,31 @@ html, body {
   box-sizing: border-box;
   margin-bottom: 35px;
   margin-top: -18px;
+}
+.info_Alert {
+  background-color: #198754; /* same as your original */
+  color: white;
+  width: 100%;
+  padding: 16px 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
+  margin-bottom: 35px;
+  margin-top: -18px;
+}
+.warningAlert {
+  background-color: #f99900; /* same as your original */
+  color: #664d03;
+  width: 100%;
+  padding: 16px 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
+  margin-bottom: 35px;
+  margin-top: -18px;
+}
+.warningAlert .alert-close {
+  color: #664d03;
 }
 .alert-content {
   display: flex;

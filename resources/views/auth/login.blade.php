@@ -26,9 +26,89 @@
                                 </div>
                             </div>
                         @endif
+                        @if (session('emailVerificationInfo'))
+                            <div class="info-alert" id="infoAlert">
+                                <div class="info_Alert">
+                                    <div class="alert-content">
+                                        <span class="alert-icon">
+                                            <i class="bi bi-info-circle"></i>
+                                        </span>
+                                        <div class="alert-text">
+                                            <strong>Email Verification Required</strong><br>
+                                            <span class="alert-description">
+                                                {!!session('emailVerificationInfo')!!}
+                                            </span>
+                                            {{--Resend Button--}}
+                                            <form action="{{ route('resend.verification') }}" method="post" style="margin-top:10px;">
+                                                @csrf
+                                                <input type="hidden" name="email" value="{{ old('email') }}">
+                                                <button type="submit" class="btn btn-sm btn-primary">
+                                                   Resend Verification Email
+                                                </button>
+                                            </form>
+                                        </div>
+                                        <button class="alert-close" onclick="dismissAlert()">&times;</button>
+                                    </div>
+                                </div>
+                            </div>
+                        @endif
+                        @if (session('status'))
+                            <div class="info-alert" id="infoAlert">
+                                <div class="successAlert">
+                                    <div class="alert-content">
+                                        <span class="alert-icon">
+                                            <i class="bi bi-envelope-check"></i>
+                                        </span>
+                                        <div class="alert-text">
+                                            <strong>Email Verification Status</strong><br>
+                                            <span class="alert-description">
+                                                A new verification link has been sent to your email.
+                                            </span>
+                                        </div>
+                                        <button class="alert-close" onclick="dismissAlert()">&times;</button>
+                                    </div>
+                                </div>
+                            </div>
+                        @endif
+                        @error('admin_access_denied')
+                            <div class="info-alert" id="infoAlert">
+                                <div class="warningAlert">
+                                    <div class="alert-content">
+                                        <span class="alert-icon">
+                                            <i class="bi bi-exclamation-triangle"></i>
+                                        </span>
+                                        <div class="alert-text">
+                                            <strong>Access Denied</strong><br>
+                                            <span class="alert-description">
+                                                {{ $message }}
+                                            </span>
+                                        </div>
+                                        <button class="alert-close" onclick="dismissAlert()">&times;</button>
+                                    </div>
+                                </div>
+                            </div>
+                        @enderror
+                        @error('invalid_cred')
+                            <div class="info-alert" id="infoAlert">
+                                <div class="warningAlert">
+                                    <div class="alert-content">
+                                        <span class="alert-icon">
+                                            <i class="bi bi-exclamation-triangle"></i>
+                                        </span>
+                                        <div class="alert-text">
+                                            <strong>Invalid Credentials</strong><br>
+                                            <span class="alert-description">
+                                                {{ $message }}
+                                            </span>
+                                        </div>
+                                        <button class="alert-close" onclick="dismissAlert()">&times;</button>
+                                    </div>
+                                </div>
+                            </div>
+                        @enderror
                         <h4 style="text-align: left" class="mb-3">Sign In</h4>
                         <p style="text-align: left" class="fw-light">Keep the news flowing—log in to manage the portal.</p>
-                        <form method="POST" action="#">
+                        <form method="POST" action="{{ route('auth.editor.login') }}">
                             @csrf
                             <div class="mb-3">
                                 <h5 style="text-align: left"><label for="email" class="form-label">Email Address</label></h5>
@@ -36,7 +116,7 @@
                             </div>
                             <h5 style="text-align: left"><label for="password" class="form-label">Password</label></h5>
                             <div class="custom-input-group mb-3">
-                              <input type="password" placeholder="Enter your Password" id="passwordInput" class="form-control rounded-0" aria-label="Password">
+                              <input type="password"  placeholder="Enter your Password" name= "password" id="passwordInput" class="form-control rounded-0" aria-label="Password">
                               <span class="input-group-text" id="togglePassword" style="cursor: pointer;">
                                 <i class="bi bi-eye-slash-fill" id="eyeIcon"></i>
                               </span>
@@ -82,7 +162,7 @@
                             </div>
                             <p class="text-center mt-4 mb-0">
                               Don't have an account?
-                              <a href="{{ route('auth.signup') }}" class="register-link">
+                              <a href="{{ route('auth.editor.signup') }}" class="register-link">
                                 Register here
                               </a>
                             </p>

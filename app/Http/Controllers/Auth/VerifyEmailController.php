@@ -19,6 +19,6 @@ class VerifyEmailController extends Controller
         $user->markEmailAsVerified();
     }
 
-    return redirect()->route('auth.login')->with('success', 'Email Verification Successful');
+    return redirect()->route('auth.editor.loginform')->with('success', 'Email Verification Successful');
     }
 }

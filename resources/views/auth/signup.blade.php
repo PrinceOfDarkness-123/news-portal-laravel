@@ -16,10 +16,10 @@
                     <div style="text-align:center">
                         @if ($errors->any())
                             <div class="info-alert" id="infoAlert">
-                                <div class="errorAlert">
+                                <div class="warningAlert">
                                     <div class="alert-content">
                                         <span class="alert-icon">
-                                            <i class="bi bi-x-circle" style="font-size: 1.3rem;"></i>
+                                            <i class="bi bi-exclamation-triangle" style="font-size: 1.3rem;"></i>
                                         </span>
                                         <div class="alert-text">
                                             <strong>Can't Register your Account</strong><br>
@@ -70,7 +70,7 @@
                         @endif
                         <h4 style="text-align: left" class="mb-3">Create An Account</h4>
                         <p style="text-align: left" class="fw-light">Join a community of writers—create an account and let your words make an impact.</p>
-                        <form method="POST" action="{{ route('auth.create') }}">
+                        <form method="POST" action="{{ route('auth.editor.create') }}">
                             @csrf
                             <div class="mb-3">
                                 <h6 style="text-align: left"><label for="username" class="form-label">User Name</label></h6>
@@ -158,7 +158,7 @@
                             <button type="submit" class="btn btn-primary rounded-0 w-100">Get Started</button>
                             <p class="text-center mt-4 mb-0">
                               Already have an Account?
-                              <a href="{{ route('auth.login') }}" class="register-link">
+                              <a href="{{ route('auth.editor.loginform') }}" class="register-link">
                                 Sign In Here
                               </a>
                             </p>
